@@ -1,0 +1,15 @@
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\bin\Debug\Diplomski.exe.config
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\bin\Debug\Diplomski.exe
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\bin\Debug\Diplomski.pdb
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.csprojAssemblyReference.cache
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\MainWindow.g.cs
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\App.g.cs
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski_MarkupCompile.cache
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski_MarkupCompile.lref
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\MainWindow.baml
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.g.resources
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.Properties.Resources.resources
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.csproj.GenerateResource.cache
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.csproj.CoreCompileInputs.cache
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.exe
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.pdb
