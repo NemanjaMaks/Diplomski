@@ -13,3 +13,9 @@ D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.csproj.Gen
 D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.csproj.CoreCompileInputs.cache
 D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.exe
 D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\Diplomski.pdb
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\CustomComponents\LoginPage.g.cs
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\CustomComponents\LoginPage.baml
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\CustomComponents\DezurstvoPage.g.cs
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\CustomComponents\DezurstvoPage.baml
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\CustomComponents\PreferencePage.g.cs
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\Debug\CustomComponents\PreferencePage.baml

@@ -7,22 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
     <Grid>
-        <Grid Width="250" Height="180">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel HorizontalAlignment="Center" Grid.Row="0">
-                <Label>Korisnicko ime</Label>
-                <TextBox x:Name="tbx_username" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Center" Grid.Row="1">
-                <Label>Lozinka</Label>
-                <PasswordBox x:Name="tbx_password" HorizontalAlignment="Center" Height="24" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
-            </StackPanel>
-            <Button x:Name="btn_login" Grid.Row="2" Height="30" Width="75" Click="btn_login_Click">Login</Button>
-        </Grid>
-        
+        <Frame x:Name="frame"/>
     </Grid>
 </Window>

@@ -1,0 +1,21 @@
+﻿<Page x:Class="Diplomski.CustomComponents.DezurstvoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Diplomski.CustomComponents"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DezurstvoPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="dataGrid" Grid.Row="0">
+            
+        </DataGrid>
+        <Button x:Name="btn_preference" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Width="100" Height="30" Click="btn_preference_Click">Preference</Button>
+    </Grid>
+</Page>

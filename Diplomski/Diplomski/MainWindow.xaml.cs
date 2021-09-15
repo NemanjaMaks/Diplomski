@@ -1,4 +1,5 @@
-﻿using Diplomski.DatabaseHelper;
+﻿using Diplomski.CustomComponents;
+using Diplomski.DatabaseHelper;
 using Diplomski.DataModel;
 using System;
 using System.Collections.Generic;
@@ -23,14 +24,32 @@ namespace Diplomski
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static User user;
+        public static User User { get => user; set => user = value; }
+
         public MainWindow()
         {
             InitializeComponent();
+            RegisterEvents();
+            frame.NavigationService.Navigate(new LoginPage());
         }
 
-        private void btn_login_Click(object sender, RoutedEventArgs e)
+        private void RegisterEvents()
         {
-            User user = SqlQueryHelper.Login(tbx_username.Text, tbx_password.Text);
+            Global.LoginEvent += OnLogin;
+            Global.ChangePageEvent += OnPageChange;
         }
+
+        private void OnLogin(object sender, LoginEventArgs args)
+        {
+            User = args.User;
+            frame.NavigationService.Navigate(new DezurstvoPage());
+        }
+
+        private void OnPageChange(object sender, Page page)
+        {
+            frame.NavigationService.Navigate(page);
+        }
+
     }
 }

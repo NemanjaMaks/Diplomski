@@ -1,0 +1,58 @@
+﻿<Page x:Class="Diplomski.CustomComponents.PreferencePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Diplomski.CustomComponents"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PreferencePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalAlignment="Center" FontSize="24">Moje preference</Label>
+            <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0" Margin="10">
+                    <Label>Doba dana</Label>
+                    <ComboBox x:Name="cbx_deoDana">
+                        <ComboBoxItem IsSelected="True">Prvi deo dana</ComboBoxItem>
+                        <ComboBoxItem>Drugi deo dana</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+                    <Label>Pauza</Label>
+                    <ComboBox x:Name="cbx_pauza">
+                        <ComboBoxItem IsSelected="True">Bez pauze izmedju dezurstva</ComboBoxItem>
+                        <ComboBoxItem>Sa pauzom izmedju dezurstva</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="0" Margin="10">
+                    <Label>Dezurstvo vikendom</Label>
+                    <ComboBox x:Name="cbx_vikend">
+                        <ComboBoxItem IsSelected="True">Da</ComboBoxItem>
+                        <ComboBoxItem>Ne</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+            <Button x:Name="btn_izmeni" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="40" Click="btn_izmeni_Click">Izmeni</Button>
+        </Grid>
+        
+    </Grid>
+</Page>
