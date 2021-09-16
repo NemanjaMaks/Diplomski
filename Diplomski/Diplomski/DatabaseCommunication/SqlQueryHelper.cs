@@ -41,9 +41,9 @@ namespace Diplomski.DatabaseHelper
             return null;
         }
 
-        public static List<Dezurstvo> GetDezurstva(int id_korisnika)
+        public static ListaDezurstva GetMojaDezurstva(int id_korisnika)
         {
-            List<Dezurstvo> dezurstva = new List<Dezurstvo>();
+            ListaDezurstva dezurstva = new ListaDezurstva();
             using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
             {
                 string sql = @"select d.id, i.nazivRoka, d.predmet, d.vreme, d.sala from Dezurstvo d
@@ -65,6 +65,38 @@ namespace Diplomski.DatabaseHelper
                         dezurstvo.Sala = reader.GetString(4);
 
                         dezurstvo.Id_korisnika = id_korisnika;
+
+                        dezurstva.Add(dezurstvo);
+                    }
+                }
+            }
+
+            return dezurstva;
+        }
+
+        public static ListaDezurstva GetDezurstva(int id_korisnika)
+        {
+            ListaDezurstva dezurstva = new ListaDezurstva();
+            using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+            {
+                string sql = @"select d.id, i.nazivRoka, d.predmet, d.vreme, d.sala, d.id_korisnika from Dezurstvo d
+                                join IspitniRok i on d.id_roka = i.id
+                                where d.id_korisnika <> @id_korisnika
+                                and i.aktivan = 1;";
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("id_korisnika", id_korisnika);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Dezurstvo dezurstvo = new Dezurstvo();
+                        dezurstvo.Id = reader.GetInt32(0);
+                        dezurstvo.Rok = reader.GetString(1);
+                        dezurstvo.Predmet = reader.GetString(2);
+                        dezurstvo.Vreme = reader.GetDateTime(3);
+                        dezurstvo.Sala = reader.GetString(4);
+                        dezurstvo.Id_korisnika = reader.GetInt32(5);
 
                         dezurstva.Add(dezurstvo);
                     }
@@ -137,7 +169,15 @@ namespace Diplomski.DatabaseHelper
             }
         }
 
-        
+        public static void GetBest(Dezurstvo dezurstvo, Preference preference)
+        {
+
+        }
+
+        public static void Zameni(int id_dezurstva, int id_korisnika)
+        {
+
+        }
 
     }
 }

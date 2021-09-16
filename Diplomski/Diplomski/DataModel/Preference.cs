@@ -32,5 +32,28 @@ namespace Diplomski.DataModel
             this.uvece = uvece;
             this.bezPauze = bezPauze;
         }
+
+        public int GetFlag()
+        {
+            int flag = 0;
+            if (Vikend)
+            {
+                flag |= 1;
+                flag <<= 1;
+            }
+
+            if (Uvece)
+            {
+                flag |= 1;
+                flag <<= 1;
+            }
+
+            if (BezPauze)
+            {
+                flag |= 1;
+            }
+
+            return flag;
+        }
     }
 }

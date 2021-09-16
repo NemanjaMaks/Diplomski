@@ -16,6 +16,6 @@
         <DataGrid x:Name="dataGrid" Grid.Row="0">
             
         </DataGrid>
-        <Button x:Name="btn_preference" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Width="100" Height="30" Click="btn_preference_Click">Preference</Button>
+        <Button x:Name="btn_zameni" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Width="100" Height="30" Click="btn_zameni_Click">Zameni</Button>
     </Grid>
 </Page>

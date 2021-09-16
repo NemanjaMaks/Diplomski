@@ -107,6 +107,7 @@
     <Compile Include="DatabaseCommunication\SqlConnection.cs" />
     <Compile Include="DatabaseCommunication\SqlQueryHelper.cs" />
     <Compile Include="DataModel\Dezurstvo.cs" />
+    <Compile Include="DataModel\ListaDezurstva.cs" />
     <Compile Include="DataModel\Preference.cs" />
     <Compile Include="DataModel\User.cs" />
     <Compile Include="Global.cs" />

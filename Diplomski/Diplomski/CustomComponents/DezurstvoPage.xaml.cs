@@ -28,7 +28,7 @@ namespace Diplomski.CustomComponents
         public DezurstvoPage()
         {
             InitializeComponent();
-            dezurstva = new ObservableCollection<Dezurstvo>(SqlQueryHelper.GetDezurstva(MainWindow.User.Id));
+            dezurstva = new ObservableCollection<Dezurstvo>(MainWindow.User.GetDezurstva());
             dataGrid.ItemsSource = dezurstva;
             dataGrid.Loaded += DataGrid_Loaded;
             
@@ -45,9 +45,11 @@ namespace Diplomski.CustomComponents
             }
         }
 
-        private void btn_preference_Click(object sender, RoutedEventArgs e)
+        private void btn_zameni_Click(object sender, RoutedEventArgs e)
         {
-            Global.ChangePageEvent?.Invoke(this, new PreferencePage());
+            ListaDezurstva listaDezurstva = SqlQueryHelper.GetDezurstva(MainWindow.User.Id);
+            Dezurstvo zamena = listaDezurstva.GetBestFit(MainWindow.User.GetPreference());
+            MessageBox.Show(zamena.ToString());
         }
     }
 }

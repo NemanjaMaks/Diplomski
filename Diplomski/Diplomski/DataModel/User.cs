@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diplomski.DatabaseHelper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,9 @@ namespace Diplomski.DataModel
         private string username;
         private string password;
         private bool isAdmin;
+
+        private ListaDezurstva mojaDezurstva;
+        private Preference preference;
 
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
@@ -34,6 +38,26 @@ namespace Diplomski.DataModel
             this.username = username;
             this.password = password;
             this.isAdmin = isAdmin;
+        }
+
+        public void LoadDezurstva()
+        {
+            mojaDezurstva = SqlQueryHelper.GetMojaDezurstva(this.Id);
+        }
+
+        public ListaDezurstva GetDezurstva()
+        {
+            return this.mojaDezurstva;
+        }
+
+        public void LoadPreference()
+        {
+            preference = SqlQueryHelper.GetPreference(this.Id);
+        }
+
+        public Preference GetPreference()
+        {
+            return this.preference;
         }
 
     }
