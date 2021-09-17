@@ -38,7 +38,7 @@ namespace Diplomski.DataModel
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} {3}", this.rok, this.predmet, this.vreme.ToLongDateString(), this.sala);
+            return string.Format("{0} {1} {2} {3}", this.rok, this.predmet, this.vreme.ToString(), this.sala);
         }
 
         public int GetFlag(int pauza)

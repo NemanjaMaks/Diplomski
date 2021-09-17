@@ -16,7 +16,7 @@ namespace Diplomski.DataModel
             foreach (var dezurstvo in this)
             {
                 bool overlap = false;
-                foreach (var dez in MainWindow.User.GetDezurstva())
+                foreach (var dez in MainWindow.User.mojaDezurstva)
                 {
                     if (dez.Overlap(dezurstvo))
                     {
@@ -29,7 +29,7 @@ namespace Diplomski.DataModel
                     continue;
 
                 int pauza = 1440;
-                foreach (var dez in MainWindow.User.GetDezurstva())
+                foreach (var dez in MainWindow.User.mojaDezurstva)
                 {
                     int p = dez.Pauza(dezurstvo);
                     pauza = Math.Min(p, pauza);

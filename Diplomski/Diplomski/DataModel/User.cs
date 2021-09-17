@@ -16,8 +16,11 @@ namespace Diplomski.DataModel
         private string password;
         private bool isAdmin;
 
-        private ListaDezurstva mojaDezurstva;
-        private Preference preference;
+        public ListaDezurstva mojaDezurstva;
+        public Preference preference;
+        public List<Zahtev> poslatiZahtevi;
+        public List<Zahtev> primljeniZahtevi;
+
 
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
@@ -34,7 +37,7 @@ namespace Diplomski.DataModel
         {
             this.id = id;
             this.name = name;
-            this.LastName = lastName;
+            this.lastName = lastName;
             this.username = username;
             this.password = password;
             this.isAdmin = isAdmin;
@@ -45,19 +48,19 @@ namespace Diplomski.DataModel
             mojaDezurstva = SqlQueryHelper.GetMojaDezurstva(this.Id);
         }
 
-        public ListaDezurstva GetDezurstva()
-        {
-            return this.mojaDezurstva;
-        }
-
         public void LoadPreference()
         {
             preference = SqlQueryHelper.GetPreference(this.Id);
         }
 
-        public Preference GetPreference()
+        public void LoadPoslateZahteve()
         {
-            return this.preference;
+            poslatiZahtevi = SqlQueryHelper.GetPoslateZahteve(this.Id);
+        }
+
+        public void LoadPrimljeneZahteve()
+        {
+            primljeniZahtevi = SqlQueryHelper.GetPrimljeneZahteve(this.Id);
         }
 
     }

@@ -28,7 +28,8 @@ namespace Diplomski.CustomComponents
         public PreferencePage()
         {
             InitializeComponent();
-            preference = MainWindow.User.GetPreference();
+            MainWindow.User.LoadPreference();
+            preference = MainWindow.User.preference;
             cbx_deoDana.SelectedIndex = preference.Uvece ? 1 : 0;
             cbx_pauza.SelectedIndex = preference.BezPauze ? 0 : 1;
             cbx_vikend.SelectedIndex = preference.Vikend ? 0 : 1;

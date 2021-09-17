@@ -19,3 +19,7 @@ D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\x64\Debug\Diplomski.csproj
 D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\x64\Debug\Diplomski.csproj.CoreCompileInputs.cache
 D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\x64\Debug\Diplomski.exe
 D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\x64\Debug\Diplomski.pdb
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\x64\Debug\CustomComponents\PoslatiZahteviPage.g.cs
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\x64\Debug\CustomComponents\PrimljeniZahteviPage.g.cs
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\x64\Debug\CustomComponents\PoslatiZahteviPage.baml
+D:\Git_Repositories\Diplomski\Diplomski\Diplomski\obj\x64\Debug\CustomComponents\PrimljeniZahteviPage.baml

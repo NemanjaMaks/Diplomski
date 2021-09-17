@@ -14,14 +14,8 @@ namespace Diplomski.DatabaseCommunication
 
         public static System.Data.SqlClient.SqlConnection GetConnection()
         {
-            if(connection != null)
-            {
-                connection.Close();
-            }
-
             connection = new System.Data.SqlClient.SqlConnection(ConnectionString);
             connection.Open();
-
             return connection;
         }
 

@@ -63,6 +63,19 @@ namespace Diplomski
             User = args.User;
             User.LoadDezurstva();
             User.LoadPreference();
+            User.LoadPoslateZahteve();
+            User.LoadPrimljeneZahteve();
+
+            if (user.IsAdmin)
+            {
+                admin_menu.Visibility = Visibility.Visible;
+                basic_menu.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                admin_menu.Visibility = Visibility.Collapsed;
+                basic_menu.Visibility = Visibility.Visible;
+            }
             Changepage(new DezurstvoPage());
             ExpandColumn = true;
         }
@@ -90,8 +103,15 @@ namespace Diplomski
                 case "prference":
                     Changepage(new PreferencePage());
                     break;
-                case "zahtevi":
-                    //Changepage(new DezurstvoPage());
+                case "poslati_zahtevi":
+                    Changepage(new PoslatiZahteviPage());
+                    break;
+                case "primljeni_zahtevi":
+                    Changepage(new PrimljeniZahteviPage());
+                    break;
+                case "logout":
+                    ExpandColumn = false;
+                    Changepage(new LoginPage());
                     break;
             }
         }

@@ -28,7 +28,8 @@ namespace Diplomski.CustomComponents
         public DezurstvoPage()
         {
             InitializeComponent();
-            dezurstva = new ObservableCollection<Dezurstvo>(MainWindow.User.GetDezurstva());
+            MainWindow.User.LoadDezurstva();
+            dezurstva = new ObservableCollection<Dezurstvo>(MainWindow.User.mojaDezurstva);
             dataGrid.ItemsSource = dezurstva;
             dataGrid.Loaded += DataGrid_Loaded;
             
@@ -47,9 +48,17 @@ namespace Diplomski.CustomComponents
 
         private void btn_zameni_Click(object sender, RoutedEventArgs e)
         {
-            ListaDezurstva listaDezurstva = SqlQueryHelper.GetDezurstva(MainWindow.User.Id);
-            Dezurstvo zamena = listaDezurstva.GetBestFit(MainWindow.User.GetPreference());
-            MessageBox.Show(zamena.ToString());
+            Dezurstvo dezurstvo = dataGrid.SelectedItem as Dezurstvo;
+            if(dezurstvo != null)
+            {
+                ListaDezurstva listaDezurstva = SqlQueryHelper.GetDezurstva(MainWindow.User.Id);
+                Dezurstvo zamena = listaDezurstva.GetBestFit(MainWindow.User.preference);
+                MessageBoxResult result = MessageBox.Show(zamena.ToString(), "Da li zelis da zamenis dezurstvo sa sledecim dezurstvom?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    SqlQueryHelper.RequestZamena(zamena.Id, dezurstvo.Id, zamena.Id_korisnika, dezurstvo.Id_korisnika);
+                }
+            }
         }
     }
 }

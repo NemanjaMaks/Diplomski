@@ -30,7 +30,14 @@ namespace Diplomski.CustomComponents
         private void btn_login_Click(object sender, RoutedEventArgs e)
         {
             User user = SqlQueryHelper.Login(tbx_username.Text, tbx_password.Password);
-            Global.LoginEvent?.Invoke(this, new LoginEventArgs { User = user });
+            if(user != null)
+            {
+                Global.LoginEvent?.Invoke(this, new LoginEventArgs { User = user });
+            }
+            else
+            {
+                MessageBox.Show("Ne postoji korisnik sa unetim podacima!");
+            }
         }
     }
 }

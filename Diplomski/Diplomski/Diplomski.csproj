@@ -83,7 +83,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomComponents\PoslatiZahteviPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomComponents\PreferencePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomComponents\PrimljeniZahteviPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,8 +109,14 @@
     <Compile Include="CustomComponents\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomComponents\PoslatiZahteviPage.xaml.cs">
+      <DependentUpon>PoslatiZahteviPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomComponents\PreferencePage.xaml.cs">
       <DependentUpon>PreferencePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\PrimljeniZahteviPage.xaml.cs">
+      <DependentUpon>PrimljeniZahteviPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DatabaseCommunication\SqlConnection.cs" />
     <Compile Include="DatabaseCommunication\SqlQueryHelper.cs" />
@@ -110,6 +124,7 @@
     <Compile Include="DataModel\ListaDezurstva.cs" />
     <Compile Include="DataModel\Preference.cs" />
     <Compile Include="DataModel\User.cs" />
+    <Compile Include="DataModel\Zahtev.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="LoginEventArgs.cs" />
     <Compile Include="MainWindow.xaml.cs">
