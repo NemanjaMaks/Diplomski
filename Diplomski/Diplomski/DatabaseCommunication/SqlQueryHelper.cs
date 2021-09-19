@@ -61,13 +61,13 @@ namespace Diplomski.DatabaseHelper
                         while (reader.Read())
                         {
                             Dezurstvo dezurstvo = new Dezurstvo();
-                            dezurstvo.Id = reader.GetInt32(0);
+                            dezurstvo.id = reader.GetInt32(0);
                             dezurstvo.Rok = reader.GetString(1);
                             dezurstvo.Predmet = reader.GetString(2);
                             dezurstvo.Vreme = reader.GetDateTime(3);
                             dezurstvo.Sala = reader.GetString(4);
 
-                            dezurstvo.Id_korisnika = id_korisnika;
+                            dezurstvo.id_korisnika = id_korisnika;
 
                             dezurstva.Add(dezurstvo);
                         }
@@ -78,13 +78,15 @@ namespace Diplomski.DatabaseHelper
             return dezurstva;
         }
 
-        public static ListaDezurstva GetDezurstva(int id_korisnika)
+        public static ListaDezurstva GetDezurstva(int id_korisnika = -1)
         {
             ListaDezurstva dezurstva = new ListaDezurstva();
             using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
             {
-                string sql = @"select d.id, i.nazivRoka, d.predmet, d.vreme, d.sala, d.id_korisnika from Dezurstvo d
+                string sql = @"select d.id, i.nazivRoka, d.predmet, d.vreme, d.sala, d.id_korisnika, k.ime + ' ' + k.prezime 
+                                from Dezurstvo d
                                 join IspitniRok i on d.id_roka = i.id
+                                join Korisnik k on k.id = d.id_korisnika
                                 where d.id_korisnika <> @id_korisnika
                                 and i.aktivan = 1;";
                 using (SqlCommand command = new SqlCommand(sql, conn))
@@ -96,12 +98,13 @@ namespace Diplomski.DatabaseHelper
                         while (reader.Read())
                         {
                             Dezurstvo dezurstvo = new Dezurstvo();
-                            dezurstvo.Id = reader.GetInt32(0);
+                            dezurstvo.id = reader.GetInt32(0);
                             dezurstvo.Rok = reader.GetString(1);
                             dezurstvo.Predmet = reader.GetString(2);
                             dezurstvo.Vreme = reader.GetDateTime(3);
                             dezurstvo.Sala = reader.GetString(4);
-                            dezurstvo.Id_korisnika = reader.GetInt32(5);
+                            dezurstvo.id_korisnika = reader.GetInt32(5);
+                            dezurstvo.ImeKorisnika = reader.GetString(6);
 
                             dezurstva.Add(dezurstvo);
                         }
@@ -129,12 +132,12 @@ namespace Diplomski.DatabaseHelper
                         if (reader.Read())
                         {
                             dezurstvo = new Dezurstvo();
-                            dezurstvo.Id = reader.GetInt32(0);
+                            dezurstvo.id = reader.GetInt32(0);
                             dezurstvo.Rok = reader.GetString(1);
                             dezurstvo.Predmet = reader.GetString(2);
                             dezurstvo.Vreme = reader.GetDateTime(3);
                             dezurstvo.Sala = reader.GetString(4);
-                            dezurstvo.Id_korisnika = reader.GetInt32(5);
+                            dezurstvo.id_korisnika = reader.GetInt32(5);
                         }
                     }
                 }
@@ -343,6 +346,49 @@ namespace Diplomski.DatabaseHelper
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public static PreferenceStatistika GetPreferenceStatistika()
+        {
+            string sql = @"select 'Rad vikendom', 'Da', (select count(*) from Preference where vikend = 1)
+                            union all
+                            select 'Rad vikendom', 'Ne',(select count(*) from Preference where vikend = 0)
+                            union all
+                            select 'Deo dana', 'Prva_polovina_dana',(select count(*) from Preference where uvece = 0)
+                            union all
+                            select 'Deo dana', 'Druga_polovina_dana',(select count(*) from Preference where uvece = 1)
+                            union all
+                            select 'Pauza', 'Bez_pauze',(select count(*) from Preference where bezPauze = 1)
+                            union all
+                            select 'Pauza', 'Sa_pauzom',(select count(*) from Preference where bezPauze = 0);";
+
+            PreferenceStatistika statistika = new PreferenceStatistika();
+            using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+            {
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string key = reader.GetString(0);
+                            string name = reader.GetString(1);
+                            int val = reader.GetInt32(2);
+
+                            if (statistika.ContainsKey(key))
+                            {
+                                statistika[key].Add(new NameValuePair { Name = name, Value = val });
+                            }
+                            else
+                            {
+                                statistika.Add(key, new List<NameValuePair>() { new NameValuePair { Name = name, Value = val } });
+                            }
+                        }
+                    }
+                }
+            }
+
+            return statistika;
         }
 
     }

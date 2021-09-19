@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Git_Repositories\Diplomski\Diplomski\Diplomski\App.xaml
-6-1647530098
+9-363558885
 
-191009662375
-13-1505183044
-CustomComponents\DezurstvoPage.xaml;CustomComponents\LoginPage.xaml;CustomComponents\PoslatiZahteviPage.xaml;CustomComponents\PreferencePage.xaml;CustomComponents\PrimljeniZahteviPage.xaml;MainWindow.xaml;
+241317295880
+18-369397258
+CustomComponents\AdminDezurstvoPage.xaml;CustomComponents\AdminExcelImportPage.xaml;CustomComponents\DezurstvoPage.xaml;CustomComponents\LoginPage.xaml;CustomComponents\PoslatiZahteviPage.xaml;CustomComponents\PreferencePage.xaml;CustomComponents\PrimljeniZahteviPage.xaml;CustomComponents\StatisticsPage.xaml;MainWindow.xaml;
 
 False
 

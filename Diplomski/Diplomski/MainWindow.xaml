@@ -4,14 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diplomski"
+        xmlns:shell="System.Windows.Shell"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200"
-        WindowStartupLocation="CenterScreen">
+        Title="Diplomski" Height="800" Width="1200"
+        WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow"
+        Icon="/Resources/logo.png">
     <Window.Resources>
         <Style TargetType="{x:Type MenuItem}">
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#7c7c7c" Offset="0.0"></GradientStop>
+                        <GradientStop Color="#404040" Offset="0.5"></GradientStop>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Margin" Value="1"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#7c7c7c"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Menu}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#9a0101" Offset="0.0"></GradientStop>
+                        <GradientStop Color="#b13a3a" Offset="0.75"></GradientStop>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+
         </Style>
     </Window.Resources>
     <Grid>
@@ -40,10 +67,17 @@
             <MenuItem Name="prference" Header="Preference" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
             <MenuItem Name="poslati_zahtevi" Header="Moji zahtevi" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
             <MenuItem Name="primljeni_zahtevi" Header="Pristigli zahtevi" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
-            <MenuItem x:Name="logout" Header="Logout"  DockPanel.Dock="Bottom" Click="MenuItem_Click" Margin="1,0" UseLayoutRounding="False"/>
+            <MenuItem x:Name="logout" Header="Logout"  DockPanel.Dock="Bottom" Click="MenuItem_Click" Margin="1,2" UseLayoutRounding="False"/>
         </Menu>
         <Menu x:Name="admin_menu" Grid.Column="0" Visibility="Hidden">
-            <MenuItem Name="test" Header="TEST" Click="MenuItem_Click"></MenuItem>
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel VerticalAlignment="Stretch" LastChildFill="False"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Name="dezurstva_admin" Header="Dezurstva" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
+            <MenuItem Name="statistika" Header="Statistika" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
+            <MenuItem x:Name="logout_admin" Header="Logout"  DockPanel.Dock="Bottom" Click="MenuItem_Click" Margin="1,2" UseLayoutRounding="False"/>
         </Menu>
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Grid.Column="1"/>
     </Grid>

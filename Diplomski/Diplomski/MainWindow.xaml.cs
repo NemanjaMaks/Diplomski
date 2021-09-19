@@ -70,13 +70,15 @@ namespace Diplomski
             {
                 admin_menu.Visibility = Visibility.Visible;
                 basic_menu.Visibility = Visibility.Collapsed;
+                Changepage(new AdminExcelImportPage());
             }
             else
             {
                 admin_menu.Visibility = Visibility.Collapsed;
                 basic_menu.Visibility = Visibility.Visible;
+                Changepage(new DezurstvoPage());
             }
-            Changepage(new DezurstvoPage());
+            
             ExpandColumn = true;
         }
 
@@ -100,6 +102,9 @@ namespace Diplomski
                 case "dezurstva":
                     Changepage(new DezurstvoPage());
                     break;
+                case "dezurstva_admin":
+                    Changepage(new AdminDezurstvoPage());
+                    break;
                 case "prference":
                     Changepage(new PreferencePage());
                     break;
@@ -109,7 +114,11 @@ namespace Diplomski
                 case "primljeni_zahtevi":
                     Changepage(new PrimljeniZahteviPage());
                     break;
+                case "statistika":
+                    Changepage(new StatisticsPage());
+                    break;
                 case "logout":
+                case "logout_admin":
                     ExpandColumn = false;
                     Changepage(new LoginPage());
                     break;

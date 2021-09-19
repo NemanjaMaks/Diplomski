@@ -8,25 +8,26 @@ namespace Diplomski.DataModel
 {
     public class Dezurstvo
     {
-        private int id;
+        public int id;
         private string rok;
-        private int id_korisnika;
+        public int id_korisnika;
+        private string ime_korisnika;
         private DateTime vreme;
         private string predmet;
         private string sala;
 
-        public string Sala { get => sala; set => sala = value; }
-        public string Predmet { get => predmet; set => predmet = value; }
-        public DateTime Vreme { get => vreme; set => vreme = value; }
-        public int Id_korisnika { get => id_korisnika; set => id_korisnika = value; }
+
+        public string ImeKorisnika { get => ime_korisnika; set => ime_korisnika = value; }
         public string Rok { get => rok; set => rok = value; }
-        public int Id { get => id; set => id = value; }
+        public DateTime Vreme { get => vreme; set => vreme = value; }
+        public string Predmet { get => predmet; set => predmet = value; }
+        public string Sala { get => sala; set => sala = value; }
 
         public Dezurstvo()
         {
         }
 
-        public Dezurstvo(int id, string rok, int id_korisnika, DateTime vreme, string predmet, string sala)
+        public Dezurstvo(int id, string rok, int id_korisnika, DateTime vreme, string predmet, string sala, string ime)
         {
             this.id = id;
             this.rok = rok;
@@ -34,6 +35,7 @@ namespace Diplomski.DataModel
             this.vreme = vreme;
             this.predmet = predmet;
             this.sala = sala;
+            this.ime_korisnika = ime;
         }
 
         public override string ToString()
