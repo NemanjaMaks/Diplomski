@@ -58,7 +58,7 @@ namespace Diplomski.DataModel
                 flag <<= 1;
             }
 
-            if(pauza < 30)
+            if(pauza <= 30)
             {
                 flag |= 1;
             }
@@ -90,7 +90,11 @@ namespace Diplomski.DataModel
 
             if (this.Vreme.Date == dezurstvo.Vreme.Date)
             {
-                pauza = (int)Math.Abs(this.Vreme.TimeOfDay.TotalMinutes - dezurstvo.Vreme.TimeOfDay.TotalMinutes);
+                pauza = (int)Math.Abs(this.Vreme.TimeOfDay.TotalMinutes - dezurstvo.Vreme.TimeOfDay.TotalMinutes) - 180;
+                if(pauza < 0)
+                {
+                    pauza = 1440;
+                }
             }
             else
             {

@@ -177,6 +177,42 @@ namespace Diplomski.DatabaseHelper
             return GetPreference(id_korisnika);
         }
 
+        public static LokalnePreference GetLokalnePreference(int id_korisnika)
+        {
+            using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+            {
+                string sql = @"select lp.* from LokalnePreference lp
+                                join IspitniRok i on i.id = lp.id_roka
+                                where lp.id_korisnika = @id_korisnika
+                                and i.aktivan = 1";
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("id_korisnika", id_korisnika);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            LokalnePreference preference = new LokalnePreference();
+                            preference.Id = reader.GetInt32(0);
+                            preference.Id_korisnika = reader.GetInt32(1);
+                            preference.Id_roka = reader.GetInt32(2);
+                            preference.DatumNedostupan_od = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
+                            preference.DatumNedostupan_do = reader.IsDBNull(4) ? (DateTime?)null : reader.GetDateTime(4);
+                            preference.DatumVise_od = reader.IsDBNull(5) ? (DateTime?)null : reader.GetDateTime(5);
+                            preference.DatumVise_do = reader.IsDBNull(6) ? (DateTime?)null : reader.GetDateTime(6);
+
+                            return preference;
+                        }
+                    }
+                }
+            }
+
+            //Ako nije pronasao preference za korisnika, dodaj nove i njih vrati
+            CreateLokalnePreference(id_korisnika);
+            return GetLokalnePreference(id_korisnika);
+        }
+
         public static void ChangePreference(Preference preference)
         {
             using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
@@ -206,6 +242,73 @@ namespace Diplomski.DatabaseHelper
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     command.Parameters.AddWithValue("id_korisnika", id_korisnika);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private static void CreateLokalnePreference(int id_korisnika)
+        {
+            using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+            {
+                string sql = "insert into LokalnePreference (id_korisnika, id_roka) values(@id_korisnika, (select id from IspitniRok where aktivan = 1))";
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("id_korisnika", id_korisnika);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void ChangeLokalnePreference(LokalnePreference preference)
+        {
+            using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+            {
+                string sql = @"update LokalnePreference 
+                        set nedostupan_od = @nedostupan_od,
+                            nedostupan_do = @nedostupan_do,
+                            zelimVise_od = @vise_od,
+                            zelimVise_do = @vise_do
+                        where id = @id";
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("id", preference.Id);
+                    if (preference.DatumNedostupan_od == null)
+                    {
+                        command.Parameters.AddWithValue("nedostupan_od", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("nedostupan_od", preference.DatumNedostupan_od);
+                    }
+
+                    if (preference.DatumNedostupan_do == null)
+                    {
+                        command.Parameters.AddWithValue("nedostupan_do", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("nedostupan_do", preference.DatumNedostupan_do);
+                    }
+
+                    if (preference.DatumVise_od == null)
+                    {
+                        command.Parameters.AddWithValue("vise_od", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("vise_od", preference.DatumVise_od);
+                    }
+
+                    if (preference.DatumVise_do == null)
+                    {
+                        command.Parameters.AddWithValue("vise_do", DBNull.Value);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("vise_do", preference.DatumVise_do);
+                    }
+
                     command.ExecuteNonQuery();
                 }
             }

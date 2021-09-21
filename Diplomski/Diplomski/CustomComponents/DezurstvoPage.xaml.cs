@@ -40,13 +40,21 @@ namespace Diplomski.CustomComponents
             if(dezurstvo != null)
             {
                 ListaDezurstva listaDezurstva = SqlQueryHelper.GetDezurstva(MainWindow.User.Id);
-                Dezurstvo zamena = listaDezurstva.GetBestFit(MainWindow.User.preference);
-                MessageBoxResult result = MessageBox.Show(zamena.ToString(), "Da li zelis da zamenis dezurstvo sa sledecim dezurstvom?", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (result == MessageBoxResult.Yes)
+                Dezurstvo zamena = listaDezurstva.GetBestFit(MainWindow.User.preference, MainWindow.User.lokalnePreference);
+                if(zamena != null)
                 {
-                    SqlQueryHelper.RequestZamena(zamena.id, dezurstvo.id, zamena.id_korisnika, dezurstvo.id_korisnika);
+                    MessageBoxResult result = MessageBox.Show(zamena.ToString(), "Da li zelis da zamenis dezurstvo sa sledecim dezurstvom?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        SqlQueryHelper.RequestZamena(zamena.id, dezurstvo.id, zamena.id_korisnika, dezurstvo.id_korisnika);
+                    }
+                }
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show("Ne postoji zamena za dezurstvo u vasem slobodnom periodu!", "Ne postoji zamena!", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
+                
         }
     }
 }

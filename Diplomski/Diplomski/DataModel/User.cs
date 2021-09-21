@@ -18,6 +18,7 @@ namespace Diplomski.DataModel
 
         public ListaDezurstva mojaDezurstva;
         public Preference preference;
+        public LokalnePreference lokalnePreference;
         public List<Zahtev> poslatiZahtevi;
         public List<Zahtev> primljeniZahtevi;
 
@@ -51,6 +52,10 @@ namespace Diplomski.DataModel
         public void LoadPreference()
         {
             preference = SqlQueryHelper.GetPreference(this.Id);
+        }
+        public void LoadLokalnePreference()
+        {
+            lokalnePreference = SqlQueryHelper.GetLokalnePreference(this.Id);
         }
 
         public void LoadPoslateZahteve()

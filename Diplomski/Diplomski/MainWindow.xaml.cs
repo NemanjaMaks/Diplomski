@@ -63,6 +63,7 @@ namespace Diplomski
             User = args.User;
             User.LoadDezurstva();
             User.LoadPreference();
+            User.LoadLokalnePreference();
             User.LoadPoslateZahteve();
             User.LoadPrimljeneZahteve();
 
