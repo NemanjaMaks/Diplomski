@@ -63,7 +63,8 @@
                     <DockPanel VerticalAlignment="Stretch" LastChildFill="False"/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Name="dezurstva" Header="Moja dezurstva" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
+            <MenuItem Name="dezurstva" Header="Moja dežurstva" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
+            <MenuItem Name="sva_dezurstva" Header="Sva dežurstva" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
             <MenuItem Name="prference" Header="Preference" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
             <MenuItem Name="poslati_zahtevi" Header="Moji zahtevi" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
             <MenuItem Name="primljeni_zahtevi" Header="Pristigli zahtevi" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
@@ -75,7 +76,9 @@
                     <DockPanel VerticalAlignment="Stretch" LastChildFill="False"/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Name="dezurstva_admin" Header="Dezurstva" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
+            <MenuItem Name="dezurstva_admin" Header="Dežurstva" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
+            <MenuItem Name="dezurstva_import" Header="Dodavanje dežurstva" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
+            <MenuItem Name="korisnici" Header="Korisnici" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
             <MenuItem Name="statistika" Header="Statistika" DockPanel.Dock="Top" Click="MenuItem_Click"></MenuItem>
             <MenuItem x:Name="logout_admin" Header="Logout"  DockPanel.Dock="Bottom" Click="MenuItem_Click" Margin="1,2" UseLayoutRounding="False"/>
         </Menu>

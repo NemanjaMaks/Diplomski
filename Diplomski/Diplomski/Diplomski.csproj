@@ -75,6 +75,21 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -90,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomComponents\DezurstvoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomComponents\KorisniciPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,6 +132,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomComponents\SvaDezurstvaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomComponents\ZamenaDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -130,6 +157,9 @@
     <Compile Include="CustomComponents\DezurstvoPage.xaml.cs">
       <DependentUpon>DezurstvoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomComponents\KorisniciPage.xaml.cs">
+      <DependentUpon>KorisniciPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomComponents\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -145,6 +175,12 @@
     <Compile Include="CustomComponents\StatisticsPage.xaml.cs">
       <DependentUpon>StatisticsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomComponents\SvaDezurstvaPage.xaml.cs">
+      <DependentUpon>SvaDezurstvaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComponents\ZamenaDialog.xaml.cs">
+      <DependentUpon>ZamenaDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseCommunication\SqlConnection.cs" />
     <Compile Include="DatabaseCommunication\SqlQueryHelper.cs" />
     <Compile Include="DataModel\Dezurstvo.cs" />
@@ -152,11 +188,11 @@
     <Compile Include="DataModel\LokalnePreference.cs" />
     <Compile Include="DataModel\Preference.cs" />
     <Compile Include="DataModel\PreferenceStatistika.cs" />
-    <Compile Include="DataModel\User.cs" />
+    <Compile Include="DataModel\Korisnik.cs" />
     <Compile Include="DataModel\Zahtev.cs" />
-    <Compile Include="ExcelReader.cs" />
-    <Compile Include="Global.cs" />
-    <Compile Include="LoginEventArgs.cs" />
+    <Compile Include="Helper\ExcelReader.cs" />
+    <Compile Include="Helper\Global.cs" />
+    <Compile Include="Helper\LoginEventArgs.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

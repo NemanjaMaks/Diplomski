@@ -9,6 +9,5 @@ namespace Diplomski
 {
     public class LoginEventArgs
     {
-        public User User { get; set; }
     }
 }

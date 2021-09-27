@@ -39,7 +39,7 @@ namespace Diplomski.CustomComponents
             Dezurstvo dezurstvo = dataGrid.SelectedItem as Dezurstvo;
             if(dezurstvo != null)
             {
-                ListaDezurstva listaDezurstva = SqlQueryHelper.GetDezurstva(MainWindow.User.Id);
+                ListaDezurstva listaDezurstva = SqlQueryHelper.GetDezurstva(MainWindow.User.id);
                 Dezurstvo zamena = listaDezurstva.GetBestFit(MainWindow.User.preference, MainWindow.User.lokalnePreference);
                 if(zamena != null)
                 {

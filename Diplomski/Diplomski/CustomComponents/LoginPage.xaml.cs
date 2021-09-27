@@ -29,7 +29,7 @@ namespace Diplomski.CustomComponents
 
         private void btn_login_Click(object sender, RoutedEventArgs e)
         {
-            User user = SqlQueryHelper.Login(tbx_username.Text, tbx_password.Password);
+            Korisnik user = SqlQueryHelper.Login(tbx_username.Text, tbx_password.Password);
             if(user != null)
             {
                 Global.LoginEvent?.Invoke(this, new LoginEventArgs { User = user });

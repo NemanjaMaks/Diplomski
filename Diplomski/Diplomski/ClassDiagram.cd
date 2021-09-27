@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Diplomski.ExcelReader">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helper\ExcelReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.Global">
+    <Position X="16.5" Y="1.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="Diplomski.Global.LoginHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helper\Global.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Diplomski.Global.ChangePageHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Helper\Global.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helper\Global.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.LoginEventArgs">
+    <Position X="14.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helper\LoginEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.DataModel.Dezurstvo">
+    <Position X="11.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIACAACAAkAAAAAAQDAAICAgACAAEAAAABAgA=</HashCode>
+      <FileName>DataModel\Dezurstvo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.DataModel.Korisnik">
+    <Position X="0.5" Y="0.75" Width="2.25" />
+    <AssociationLine Name="mojaDezurstva" Type="Diplomski.DataModel.ListaDezurstva" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.75" Y="2.5" />
+        <Point X="6" Y="2.5" />
+        <Point X="6" Y="2.117" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIQEAAASBSAgUAAgAgQAgCAAAgFgAAAAAAAAAAAAEgA=</HashCode>
+      <FileName>DataModel\Korisnik.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="mojaDezurstva" />
+      <Field Name="preference" />
+      <Field Name="lokalnePreference" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="poslatiZahtevi" />
+      <Field Name="primljeniZahtevi" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Diplomski.DataModel.ListaDezurstva">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAACAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataModel\ListaDezurstva.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.DataModel.LokalnePreference">
+    <Position X="6.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAiAAAAAAgBACAIAAAgAAAAAAIBAAACAAEAAAABIgA=</HashCode>
+      <FileName>DataModel\LokalnePreference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.DataModel.Preference">
+    <Position X="9" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAiAAAAAAAAAACAAgAAgAAAAAADAAAAAwAAAAAAIgA=</HashCode>
+      <FileName>DataModel\Preference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.DataModel.NameValuePair">
+    <Position X="14.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>DataModel\PreferenceStatistika.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.DataModel.PreferenceStatistika">
+    <Position X="7.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataModel\PreferenceStatistika.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.DataModel.Zahtev">
+    <Position X="4.25" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAUACAAAAAAAAAAAAIEKAAAAAAAIAQIAQCAAgA=</HashCode>
+      <FileName>DataModel\Zahtev.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.DatabaseCommunication.SqlConnection">
+    <Position X="15.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAACAAABAAAAA=</HashCode>
+      <FileName>DatabaseCommunication\SqlConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.DatabaseHelper.SqlQueryHelper">
+    <Position X="17.75" Y="8.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ABCCAAAAAAAACAAAQACAAAAAEBCIABBQAAAQAACYCAE=</HashCode>
+      <FileName>DatabaseCommunication\SqlQueryHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.CustomComponents.AdminDezurstvoPage">
+    <Position X="0.5" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\AdminDezurstvoPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.AdminExcelImportPage">
+    <Position X="4.75" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIgAAAAABAAAAEIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\AdminExcelImportPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.DezurstvoPage">
+    <Position X="7" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\DezurstvoPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.KorisniciPage">
+    <Position X="0.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAARAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\KorisniciPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.LoginPage">
+    <Position X="2.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>CustomComponents\LoginPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.PoslatiZahteviPage">
+    <Position X="4.75" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\PoslatiZahteviPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.PreferencePage">
+    <Position X="9" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEQAACAAAQAAAAAiAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\PreferencePage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.PrimljeniZahteviPage">
+    <Position X="6.75" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAIAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\PrimljeniZahteviPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.StatisticsPage">
+    <Position X="8.75" Y="13.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAEAABAAAAQAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\StatisticsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.SvaDezurstvaPage">
+    <Position X="11.5" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\SvaDezurstvaPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.CustomComponents.ZamenaDialog">
+    <Position X="2.75" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAQAAAAAAQAAAAAAIAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\ZamenaDialog.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplomski.App">
+    <Position X="2.75" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplomski.MainWindow">
+    <Position X="4.75" Y="18" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAQAAAAAAAAIBAAAgAAhAAAAAAAABAAAAAQAQA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

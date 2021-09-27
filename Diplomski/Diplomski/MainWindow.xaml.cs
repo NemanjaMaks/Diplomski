@@ -26,8 +26,8 @@ namespace Diplomski
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private static User user;
-        public static User User { get => user; set => user = value; }
+        private static Korisnik user;
+        public static Korisnik User { get => user; set => user = value; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -61,13 +61,8 @@ namespace Diplomski
         private void OnLogin(object sender, LoginEventArgs args)
         {
             User = args.User;
-            User.LoadDezurstva();
-            User.LoadPreference();
-            User.LoadLokalnePreference();
-            User.LoadPoslateZahteve();
-            User.LoadPrimljeneZahteve();
 
-            if (user.IsAdmin)
+            if (user.JeAdmin)
             {
                 admin_menu.Visibility = Visibility.Visible;
                 basic_menu.Visibility = Visibility.Collapsed;
@@ -75,6 +70,12 @@ namespace Diplomski
             }
             else
             {
+
+                User.LoadDezurstva();
+                User.LoadPreference();
+                User.LoadLokalnePreference();
+                User.LoadPoslateZahteve();
+                User.LoadPrimljeneZahteve();
                 admin_menu.Visibility = Visibility.Collapsed;
                 basic_menu.Visibility = Visibility.Visible;
                 Changepage(new DezurstvoPage());
@@ -103,8 +104,17 @@ namespace Diplomski
                 case "dezurstva":
                     Changepage(new DezurstvoPage());
                     break;
+                case "sva_dezurstva":
+                    Changepage(new SvaDezurstvaPage());
+                    break;
                 case "dezurstva_admin":
                     Changepage(new AdminDezurstvoPage());
+                    break;
+                case "korisnici":
+                    Changepage(new KorisniciPage());
+                    break;
+                case "dezurstva_import":
+                    Changepage(new AdminExcelImportPage());
                     break;
                 case "prference":
                     Changepage(new PreferencePage());

@@ -43,10 +43,10 @@ namespace Diplomski.CustomComponents
             cbx_pauza.SelectedIndex = preference.BezPauze ? 0 : 1;
             cbx_vikend.SelectedIndex = preference.Vikend ? 0 : 1;
 
-            nedostupan_od.SelectedDate = lokalnePreference.DatumNedostupan_od;
-            nedostupan_do.SelectedDate = lokalnePreference.DatumNedostupan_do;
-            vise_od.SelectedDate = lokalnePreference.DatumVise_od;
-            vise_do.SelectedDate = lokalnePreference.DatumVise_do;
+            nedostupan_od.Value = lokalnePreference.DatumNedostupan_od;
+            nedostupan_do.Value = lokalnePreference.DatumNedostupan_do;
+            vise_od.Value = lokalnePreference.DatumVise_od;
+            vise_do.Value = lokalnePreference.DatumVise_do;
 
             cb_nedostupan.IsChecked = lokalnePreference.DatumNedostupan_od != null && lokalnePreference.DatumNedostupan_do != null;
             cb_vise.IsChecked = lokalnePreference.DatumVise_od != null && lokalnePreference.DatumVise_do != null;
@@ -62,26 +62,26 @@ namespace Diplomski.CustomComponents
 
         private void btn_izmeni_lokal_Click(object sender, RoutedEventArgs e)
         {
-            if(nedostupan_od.SelectedDate == null || nedostupan_do.SelectedDate == null)
+            if(nedostupan_od.Value == null || nedostupan_do.Value == null)
             {
                 lokalnePreference.DatumNedostupan_do = null;
                 lokalnePreference.DatumNedostupan_od = null;
             }
             else
             {
-                lokalnePreference.DatumNedostupan_do = nedostupan_do.SelectedDate.Value.Add(new TimeSpan(23, 59, 59));
-                lokalnePreference.DatumNedostupan_od = nedostupan_od.SelectedDate;
+                lokalnePreference.DatumNedostupan_do = nedostupan_do.Value.Value.Add(new TimeSpan(23, 59, 59));
+                lokalnePreference.DatumNedostupan_od = nedostupan_od.Value;
             }
 
-            if (vise_do.SelectedDate == null || vise_od.SelectedDate == null)
+            if (vise_do.Value == null || vise_od.Value == null)
             {
                 lokalnePreference.DatumVise_do = null;
                 lokalnePreference.DatumVise_od = null;
             }
             else
             {
-                lokalnePreference.DatumVise_do = vise_do.SelectedDate.Value.Add(new TimeSpan(23, 59, 59));
-                lokalnePreference.DatumVise_od = vise_od.SelectedDate;
+                lokalnePreference.DatumVise_do = vise_do.Value.Value.Add(new TimeSpan(23, 59, 59));
+                lokalnePreference.DatumVise_od = vise_od.Value;
             }
 
             SqlQueryHelper.ChangeLokalnePreference(lokalnePreference);
@@ -100,9 +100,9 @@ namespace Diplomski.CustomComponents
                 else
                 {
                     nedostupan_do.IsEnabled = false;
-                    nedostupan_do.SelectedDate = null;
+                    nedostupan_do.Value = null;
                     nedostupan_od.IsEnabled = false;
-                    nedostupan_od.SelectedDate = null;
+                    nedostupan_od.Value = null;
                 }
             }
             else if(cb == cb_vise)
@@ -115,9 +115,9 @@ namespace Diplomski.CustomComponents
                 else
                 {
                     vise_od.IsEnabled = false;
-                    vise_od.SelectedDate = null;
+                    vise_od.Value = null;
                     vise_do.IsEnabled = false;
-                    vise_do.SelectedDate = null;
+                    vise_do.Value = null;
                 }
             }
         }

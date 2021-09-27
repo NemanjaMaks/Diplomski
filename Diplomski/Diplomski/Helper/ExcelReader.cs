@@ -10,13 +10,13 @@ namespace Diplomski
 {
     public class ExcelReader
     {
-        public static DataTable ReadExcel(string path)
+        public static DataTable ReadExcel(string path, int sheet = 1)
         {
             Excel.Application objXL = null;
             Excel.Workbook objWB = null;
             objXL = new Excel.Application();
             objWB = objXL.Workbooks.Open(path);
-            Excel.Worksheet objSHT = objWB.Worksheets[1];
+            Excel.Worksheet objSHT = objWB.Worksheets[sheet];
 
             int rows = objSHT.UsedRange.Rows.Count;
             int cols = objSHT.UsedRange.Columns.Count;

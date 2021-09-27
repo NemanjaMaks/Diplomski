@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Diplomski.DatabaseHelper;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,6 +23,8 @@ namespace Diplomski.CustomComponents
     /// </summary>
     public partial class AdminExcelImportPage : Page
     {
+        private DataTable dtExcel;
+        private DataTable dtExcelGlavna;
         public AdminExcelImportPage()
         {
             InitializeComponent();
@@ -40,13 +43,18 @@ namespace Diplomski.CustomComponents
                 {
                     try
                     {
-                        DataTable dtExcel = new DataTable();
-                        //dtExcel = ExcelReader.ReadExcel(filePath, fileExt); //read excel file 
-                        dtExcel = ExcelReader.ReadExcel(filePath); //read excel file 
+                        dtExcel = new DataTable();
+                        dtExcelGlavna = new DataTable();
+                        this.Cursor = Cursors.Wait;
+                        dtExcel = ExcelReader.ReadExcel(filePath, 1); //read excel file 
+                        dtExcelGlavna = ExcelReader.ReadExcel(filePath, 2); //read excel file 
                         dataGrid.ItemsSource = dtExcel.DefaultView;
+                        dataGridGlavna.ItemsSource = dtExcelGlavna.DefaultView;
+                        this.Cursor = Cursors.Arrow;
                     }
                     catch (Exception ex)
                     {
+                        this.Cursor = Cursors.Arrow;
                         MessageBox.Show(ex.Message.ToString());
                     }
                 }
@@ -54,6 +62,39 @@ namespace Diplomski.CustomComponents
                 {
                     MessageBox.Show("Please choose .xls or .xlsx file only.", "Warning", MessageBoxButton.OK, MessageBoxImage.Error); //custom messageBox to show error  
                 }
+            }
+        }
+
+        private void btn_comfirm_Click(object sender, RoutedEventArgs e)
+        {
+            if(dtExcel != null)
+            {
+                SqlQueryHelper.DodajDezurstva(dtExcel);
+                SqlQueryHelper.DodajGlavnaDezurstva(dtExcelGlavna);
+                dtExcel.Clear();
+                dtExcelGlavna.Clear();
+                dataGrid.ItemsSource = null;
+                dataGridGlavna.ItemsSource = null;
+                MessageBox.Show("Uspešno ste dodali dežurstva u bazu");
+            }
+            else
+            {
+                MessageBox.Show("Dežurstva nisu importovana! Potvrda nije moguća.");
+            } 
+        }
+
+        private void rb_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if(rb == rb_obicna)
+            {
+                dataGrid.Visibility = Visibility.Visible;
+                dataGridGlavna.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                dataGrid.Visibility = Visibility.Hidden;
+                dataGridGlavna.Visibility = Visibility.Visible;
             }
         }
     }

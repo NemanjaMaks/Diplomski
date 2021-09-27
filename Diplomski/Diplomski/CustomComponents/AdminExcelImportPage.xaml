@@ -41,12 +41,23 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="dataGrid" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <RadioButton x:Name="rb_obicna" Checked="rb_Checked" GroupName="tip">Обична дежурства</RadioButton>
+            <RadioButton x:Name="rb_glavna" Checked="rb_Checked" GroupName="tip">Главна дежурства</RadioButton>
+        </StackPanel>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" Visibility="Visible">
 
         </DataGrid>
-        <Button x:Name="btn_import" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Width="100" Height="30" Click="btn_import_Click">Import</Button>
+        <DataGrid x:Name="dataGridGlavna" Grid.Row="1" Visibility="Hidden">
+
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+            <Button x:Name="btn_import" Width="100" Height="30" Click="btn_import_Click">Import</Button>
+            <Button x:Name="btn_comfirm" Width="100" Height="30" Click="btn_comfirm_Click">Potvrdi</Button>
+        </StackPanel>
     </Grid>
 </Page>

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,29 +13,31 @@ namespace Diplomski.DatabaseHelper
     public class SqlQueryHelper
     {
 
-        public static User Login(string username, string password)
+        public static Korisnik Login(string korIme, string sifra)
         {
             using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
             {
-                string sql = "select * from korisnik where korisnickoIme = @username and lozinka = @password";
+                string sql = "select * from korisnik where korisnickoIme = @korIme and lozinka = @sifra";
                 using(SqlCommand command = new SqlCommand(sql, conn))
                 {
-                    command.Parameters.AddWithValue("username", username);
-                    command.Parameters.AddWithValue("password", password);
+                    command.Parameters.AddWithValue("korIme", korIme);
+                    command.Parameters.AddWithValue("sifra", sifra);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            User user = new User();
-                            user.Id = reader.GetInt32(0);
-                            user.Name = reader.GetString(1);
-                            user.LastName = reader.GetString(2);
-                            user.Username = reader.GetString(3);
-                            user.Password = reader.GetString(4);
-                            user.IsAdmin = reader.GetBoolean(5);
+                            Korisnik korisnik = new Korisnik();
+                            korisnik.id = reader.GetInt32(0);
+                            korisnik.id_katedre = reader.GetInt32(1);
+                            korisnik.Ime = reader.GetString(2);
+                            korisnik.KorisnickoIme = reader.GetString(3);
+                            korisnik.Sifra = reader.GetString(4);
+                            korisnik.JeAdmin = reader.GetBoolean(5);
+                            korisnik.Zvanje = !reader.IsDBNull(6) ? reader.GetString(6) : null;
+                            korisnik.Email = !reader.IsDBNull(7) ? reader.GetString(7) : null;
 
-                            return user;
+                            return korisnik;
                         }
                     }
                 }
@@ -78,12 +81,124 @@ namespace Diplomski.DatabaseHelper
             return dezurstva;
         }
 
+        public static void DodajDezurstva(DataTable dt)
+        {
+            foreach (DataRow row in dt.Rows)
+            {
+                string rok = row.ItemArray[0].ToString();
+                DateTime vreme = DateTime.ParseExact(string.Format("{0} {1}", row.ItemArray[1].ToString(), row.ItemArray[2].ToString()), "dd.MM.yyyy. H:mm", CultureInfo.InvariantCulture);
+                string predmet = row.ItemArray[3].ToString();
+                string sala = row.ItemArray[4].ToString();
+                string nastavnik = row.ItemArray[5].ToString();
+                DodajRok(rok);
+                using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+                {
+                    string sql = @"insert into Dezurstvo (id_korisnika, id_roka, vreme, predmet, sala) 
+                                    values((select id from Korisnik where ime = @nastavnik), (select id from IspitniRok where nazivRoka = @rok), @vreme, @predmet, @sala)";
+                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    {
+                        command.Parameters.AddWithValue("nastavnik", nastavnik);
+                        command.Parameters.AddWithValue("rok", rok);
+                        command.Parameters.AddWithValue("vreme", vreme);
+                        command.Parameters.AddWithValue("predmet", predmet);
+                        command.Parameters.AddWithValue("sala", sala);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        public static void DodajGlavnaDezurstva(DataTable dt)
+        {
+            foreach (DataRow row in dt.Rows)
+            {
+                string rok = row.ItemArray[0].ToString();
+                DateTime vreme = DateTime.ParseExact(string.Format("{0} {1}", row.ItemArray[1].ToString(), row.ItemArray[2].ToString()), "dd.MM.yyyy. H:mm", CultureInfo.InvariantCulture);
+                string predmet = row.ItemArray[3].ToString();
+                string nastavnik = row.ItemArray[4].ToString();
+                string saradnik = row.ItemArray[5].ToString();
+                DodajRok(rok);
+                using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+                {
+                    string sql;
+                    if (string.IsNullOrEmpty(saradnik))
+                    {
+                        sql = @"insert into GlavnoDezurstvo (id_glavniNastavnik, id_roka, vreme, predmet) 
+                                    values((select id from Korisnik where ime = @nastavnik), (select id from IspitniRok where nazivRoka = @rok), @vreme, @predmet)";
+                    }
+                    else
+                    {
+                        sql = @"insert into GlavnoDezurstvo (id_glavniNastavnik, id_glavniSaradnik, id_roka, vreme, predmet) 
+                                    values((select id from Korisnik where ime = @nastavnik), (select id from Korisnik where ime = @saradnik), 
+                                    (select id from IspitniRok where nazivRoka = @rok), @vreme, @predmet)";
+                    }
+                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    {
+                        command.Parameters.AddWithValue("nastavnik", nastavnik);
+                        command.Parameters.AddWithValue("saradnik", saradnik);
+                        command.Parameters.AddWithValue("rok", rok);
+                        command.Parameters.AddWithValue("vreme", vreme);
+                        command.Parameters.AddWithValue("predmet", predmet);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        public static void DodajKorisnike(DataTable dt)
+        {
+            foreach (DataRow row in dt.Rows)
+            {
+                string katedra = row.ItemArray[0].ToString();
+                string ime = row.ItemArray[1].ToString();
+                string zvanje = row.ItemArray[2].ToString();
+                string korime = row.ItemArray[3].ToString();
+                string lozinka = row.ItemArray[4].ToString();
+                string mejl = row.ItemArray[5].ToString();
+                using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+                {
+                    string sql = @"insert into Korisnik (id_katedre, ime, korisnickoIme, lozinka, isAdmin, zvanje, email) 
+                                    values((select id from Katedra where naziv_katedre = @katedra), @ime, @korime, @lozinka, 0, @zvanje, @mejl)";
+                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    {
+                        command.Parameters.AddWithValue("katedra", katedra);
+                        command.Parameters.AddWithValue("ime", ime);
+                        command.Parameters.AddWithValue("zvanje", zvanje);
+                        command.Parameters.AddWithValue("korime", korime);
+                        command.Parameters.AddWithValue("lozinka", lozinka);
+                        command.Parameters.AddWithValue("mejl", mejl);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        public static void DodajRok(string nazivRoka)
+        {
+            using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+            {
+
+                string sql = @"BEGIN
+                                    IF NOT EXISTS (select * from IspitniRok where nazivRoka = @nazivRoka)
+                                    BEGIN
+                                        insert into IspitniRok (nazivRoka, aktivan) 
+                                        values(@nazivRoka, 1)
+                                    END
+                                END";
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("nazivRoka", nazivRoka);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public static ListaDezurstva GetDezurstva(int id_korisnika = -1)
         {
             ListaDezurstva dezurstva = new ListaDezurstva();
             using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
             {
-                string sql = @"select d.id, i.nazivRoka, d.predmet, d.vreme, d.sala, d.id_korisnika, k.ime + ' ' + k.prezime 
+                string sql = @"select d.id, i.nazivRoka, d.predmet, d.vreme, d.sala, d.id_korisnika, k.ime
                                 from Dezurstvo d
                                 join IspitniRok i on d.id_roka = i.id
                                 join Korisnik k on k.id = d.id_korisnika
@@ -319,7 +434,7 @@ namespace Diplomski.DatabaseHelper
             List<Zahtev> zahtevi = new List<Zahtev>();
             using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
             {
-                string sql = @"select z.id, z.korisnik_od, z.korisnik_za, k.ime + ' ' + k.prezime as ime, z.status, z.id_dezurstva_od, z.id_dezurstva_za
+                string sql = @"select z.id, z.korisnik_od, z.korisnik_za, k.ime, z.status, z.id_dezurstva_od, z.id_dezurstva_za
                                 from Zahtevi z
                                 join Dezurstvo d on z.id_dezurstva_za = d.id
                                 join Korisnik k on k.id = z.korisnik_za
@@ -355,7 +470,7 @@ namespace Diplomski.DatabaseHelper
             List<Zahtev> zahtevi = new List<Zahtev>();
             using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
             {
-                string sql = @"select z.id, z.korisnik_od, z.korisnik_za, k.ime + ' ' + k.prezime as ime, z.status, z.id_dezurstva_od, z.id_dezurstva_za
+                string sql = @"select z.id, z.korisnik_od, z.korisnik_za, k.ime, z.status, z.id_dezurstva_od, z.id_dezurstva_za
                                 from Zahtevi z
                                 join Dezurstvo d on z.id_dezurstva_za = d.id
                                 join Korisnik k on k.id = z.korisnik_od
@@ -494,5 +609,36 @@ namespace Diplomski.DatabaseHelper
             return statistika;
         }
 
+        public static List<Korisnik> GetKorisnike()
+        {
+            List<Korisnik> korisnici = new List<Korisnik>();
+
+            using (SqlConnection conn = DatabaseCommunication.SqlConnection.GetConnection())
+            {
+                string sql = @"select * from Korisnik";
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Korisnik korisnik = new Korisnik();
+                            korisnik.id = reader.GetInt32(0);
+                            korisnik.id_katedre = reader.GetInt32(1);
+                            korisnik.Ime = reader.GetString(2);
+                            korisnik.KorisnickoIme = reader.GetString(3);
+                            korisnik.Sifra = reader.GetString(4);
+                            korisnik.JeAdmin = reader.GetBoolean(5);
+                            korisnik.Zvanje = !reader.IsDBNull(6) ? reader.GetString(6) : null;
+                            korisnik.Email = !reader.IsDBNull(7) ? reader.GetString(7) : null;
+
+                            korisnici.Add(korisnik);
+                        }
+                    }
+                }
+            }
+
+            return korisnici;
+        }
     }
 }
